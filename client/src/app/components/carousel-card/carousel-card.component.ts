@@ -7,11 +7,22 @@ import { ResourceData } from '../../data/resource-data';
   styleUrls: ['./carousel-card.component.css']
 })
 export class CarouselCardComponent implements OnInit {
+  category: string;
+  name: string;
+  imageURL: string;
+  url: string;
+  id: string;
+
   @Input() resource:ResourceData;
 
   constructor() { }
 
   ngOnInit() {
+    this.category = this.resource.category;
+    this.name = this.resource.name;
+    this.imageURL = this.resource.imageURL;
+    this.url = this.resource.url;
+    this.id = this.resource.id;
   }
 
 }
