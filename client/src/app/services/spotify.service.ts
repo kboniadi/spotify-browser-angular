@@ -112,4 +112,9 @@ export class SpotifyService {
       (result) => TrackFeature.FeatureTypes.map((x) => new TrackFeature(x, result[x]))
     );
   }
+
+  getMyAccessToken(): Promise<string> {
+    //TODO: use the audio features for track endpoint to make a request to express.
+    return this.sendRequestToExpress("/my-token").then((result) => result.data)
+  }
 }

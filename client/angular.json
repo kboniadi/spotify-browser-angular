@@ -1,12 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "cli": {
-    "analytics": false
-  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "client": {
+    "at-alternative-interaction-solution": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/client",
+            "outputPath": "dist/at-alternative-interaction-solution",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -71,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "client:build:production"
+              "browserTarget": "at-alternative-interaction-solution:build:production"
             },
             "development": {
-              "browserTarget": "client:build:development"
+              "browserTarget": "at-alternative-interaction-solution:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "client:build"
+            "browserTarget": "at-alternative-interaction-solution:build"
           }
         },
         "test": {
@@ -105,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "client"
+  "defaultProject": "at-alternative-interaction-solution",
+  "cli": {
+    "analytics": false
+  }
 }

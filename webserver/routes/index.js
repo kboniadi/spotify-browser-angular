@@ -3,6 +3,7 @@ var router = express.Router();
 //Fetch doesn't exist on server-side JavaScript, so we impoort a package which implements the functionality.
 var fetch = require('node-fetch');
 var fs = require('fs');
+const { promisify } = require('util');
 
 var loadedFiles = false;
 
@@ -95,8 +96,9 @@ router.get('*', function(req, res, next) {
 	}
 });
 
+
 router.get('/login', function(req, res, next) {
-	var scopes = 'user-read-private user-read-email';
+	var scopes = "streaming user-read-email user-read-private"
 	res.redirect('https://accounts.spotify.com/authorize' +
 	  '?response_type=code' +
 	  '&client_id=' + my_client_id +
@@ -132,6 +134,7 @@ router.get('/callback', function(req, res, next) {
 		}).then(json => {
 			access_token = json.access_token;
 			refresh_token = json.refresh_token;
+			
 			fs.writeFile('tokens.json', JSON.stringify({access_token: access_token, refresh_token: refresh_token}), () => {
 				res.redirect(client_uri);
 			});
@@ -191,5 +194,9 @@ router.get('/track-audio-features/:id', function(req, res, next) {
 	var id = req.params.id;
 	makeAPIRequest('https://api.spotify.com/v1/audio-features/' + id, res);
 });
+
+router.get("/my-token", (req, res) => {
+	return res.json({data: access_token})
+})
 
 module.exports = router;

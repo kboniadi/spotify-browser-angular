@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light" style="justify-content: space-between">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item navbar-brand">
         <a class="navbar-brand" href="/">
@@ -13,5 +13,9 @@
     </ul>
   </nav>
 <main class="container-fluid">
+  <div style="position: fixed; bottom: 0; right: 0;">
+    <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+    <div [innerHTML]="gesture"></div>
+  </div>
 	<router-outlet></router-outlet>
 </main>
