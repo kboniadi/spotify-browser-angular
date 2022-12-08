@@ -110,8 +110,11 @@ export class TrackPageComponent implements OnInit {
           case "Hand Pinching":
             this.decreaseVolume();
             break;
-          case "Hand Pointing":
+          case "Swipe Left":
             this.nextTrack();
+            break;
+          case "Swipe Right":
+            this.previousTrack();
             break;
           default:
             break;

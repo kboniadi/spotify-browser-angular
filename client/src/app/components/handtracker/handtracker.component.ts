@@ -30,8 +30,10 @@ export class HandtrackerComponent implements OnInit {
     flipHorizontal: true, // flip e.g for video
     maxNumBoxes: 20, // maximum number of boxes to detect
     iouThreshold: 0.5, // ioU threshold for non-max suppression
-    scoreThreshold: 0.6, // confidence threshold for predictions.
+    scoreThreshold: 0.79, // confidence threshold for predictions.
   };
+
+  private previousPosition: number = null;
 
   constructor() {
   }
@@ -86,15 +88,31 @@ export class HandtrackerComponent implements OnInit {
             let closedhands = 0;
             let pointing = 0;
             let pinching = 0;
+            let swipeLeft = 0;
+            let swipeRight = 0;
+            
             for(let p of predictions){
                 //uncomment to view label and position data
-                // console.log(p.label + " at X: " + p.bbox[0] + ", Y: " + p.bbox[1] + " at X: " + p.bbox[2] + ", Y: " + p.bbox[3]);
+                console.log(p.label + " at X: " + p.bbox[0] + ", Y: " + p.bbox[1] + " at X: " + p.bbox[2] + ", Y: " + p.bbox[3]);
                 
                 if(p.label == 'open') openhands++;
                 if(p.label == 'closed') closedhands++;
                 if(p.label == 'point') pointing++;
                 if(p.label == 'pinch') pinching++;
                 
+
+                if (openhands == 1) {
+                  if (this.previousPosition != null && Math.abs(this.previousPosition - p.bbox[0]) > 250) {
+                    if (this.previousPosition < p.bbox[0]) {
+                      swipeRight++;
+                    } else {
+                      swipeLeft++
+                    }
+                    this.previousPosition = null;
+                  } else {
+                    this.previousPosition = p.bbox[0];
+                  }
+                }
             }
 
             // These are just a few options! What about one hand open and one hand closed!?
@@ -111,7 +129,10 @@ export class HandtrackerComponent implements OnInit {
             if (pinching > 1) this.detectedGesture = "Two Hands Pinching";
             else if(pinching == 1) this.detectedGesture = "Hand Pinching";
             
-            if (openhands == 0 && closedhands == 0 && pointing == 0 && pinching == 0)
+            if (swipeLeft == 1) this.detectedGesture = "Swipe Left";
+            if (swipeRight == 1) this.detectedGesture = "Swipe Right";
+
+            if (openhands == 0 && closedhands == 0 && pointing == 0 && pinching == 0 && swipeLeft == 0 && swipeRight == 0)
                 this.detectedGesture = "None";
 
             this.onPrediction.emit(new PredictionEvent(this.detectedGesture))
