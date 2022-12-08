@@ -2,11 +2,11 @@
 
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
 
-*/25
+24/25
 - 10/10 Created a functional web app
 - 5/5 The ability to control the web app with basic gestures (1pt per gesture)
 - 4/4 The ability to control the web app with at least two custom gestures
-- 2/2 Following good principles of UI design
+- 1/2 Following good principles of UI design
 - 2/2 Creating a compelling app and application of gestures
 - 2/2 A readme and demo video which explains how these features were implemented and their design rationale
 

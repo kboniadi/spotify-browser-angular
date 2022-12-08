@@ -16,7 +16,7 @@ export class HandtrackerComponent implements OnInit {
   500, or one half second is about right, but feel free to experiment with faster
   or slower rates
   */
-  SAMPLERATE: number = 500; 
+  SAMPLERATE: number = 300; 
   
   detectedGesture:string = "None"
   width:string = "400"
@@ -131,9 +131,11 @@ export class HandtrackerComponent implements OnInit {
             if (swipeLeft == 1) this.detectedGesture = "Swipe Left";
             if (swipeRight == 1) this.detectedGesture = "Swipe Right";
 
+            if (openhands == 0 && closedhands == 0 && pointing == 0 && swipeLeft == 0 && swipeRight == 0) {
+              this.previousPosition = null;
+            }
             if (openhands == 0 && closedhands == 0 && pointing == 0 && pinching == 0 && swipeLeft == 0 && swipeRight == 0) {
               this.detectedGesture = "None";
-              this.previousPosition = null;
             }
 
             this.onPrediction.emit(new PredictionEvent(this.detectedGesture))
