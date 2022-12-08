@@ -5,7 +5,7 @@
 */25
 - 10/10 Created a functional web app
 - 5/5 The ability to control the web app with basic gestures (1pt per gesture)
-- */4 The ability to control the web app with at least two custom gestures
+- 4/4 The ability to control the web app with at least two custom gestures
 - 2/2 Following good principles of UI design
 - 2/2 Creating a compelling app and application of gestures
 - 2/2 A readme and demo video which explains how these features were implemented and their design rationale
@@ -46,7 +46,8 @@ and extended it to include audio playback wit the added feature of gesture contr
 
 7. Describe the two custom gestures you created.
 The two custom gestures are swipe left and swipe right. There are used to go to the previous
-and skip to the next song, respectively.
+and skip to the next song, respectively. **Note** make sure to use an open hand and
+don't swipe to fast
 
 8. How does your app implement or follow principles of good UI design?
 My app utilizes modern component libraries. With gesture control, users also have

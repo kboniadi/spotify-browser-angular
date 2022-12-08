@@ -108,7 +108,6 @@ export class HandtrackerComponent implements OnInit {
                     } else {
                       swipeLeft++
                     }
-                    this.previousPosition = null;
                   } else {
                     this.previousPosition = p.bbox[0];
                   }
@@ -132,8 +131,10 @@ export class HandtrackerComponent implements OnInit {
             if (swipeLeft == 1) this.detectedGesture = "Swipe Left";
             if (swipeRight == 1) this.detectedGesture = "Swipe Right";
 
-            if (openhands == 0 && closedhands == 0 && pointing == 0 && pinching == 0 && swipeLeft == 0 && swipeRight == 0)
-                this.detectedGesture = "None";
+            if (openhands == 0 && closedhands == 0 && pointing == 0 && pinching == 0 && swipeLeft == 0 && swipeRight == 0) {
+              this.detectedGesture = "None";
+              this.previousPosition = null;
+            }
 
             this.onPrediction.emit(new PredictionEvent(this.detectedGesture))
         }, (err: any) => {

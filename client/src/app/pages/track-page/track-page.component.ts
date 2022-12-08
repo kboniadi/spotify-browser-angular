@@ -104,7 +104,7 @@ export class TrackPageComponent implements OnInit {
               this.pauseTrack();
             }
             break;
-          case "Two Open Hands":
+          case "Two Closed Hands":
             this.increaseVolume();
             break;
           case "Hand Pinching":
